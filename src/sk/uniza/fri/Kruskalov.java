@@ -88,8 +88,9 @@ public class Kruskalov {
         }
         this.graf = novyGraf;
         int[] k = new int[this.graf.getPocetVrchlov() + 1];
-        for (int i = 1; i <= this.graf.getZoznamVrcholov().size(); i++) {
+        for (int i = 0; i <= this.graf.getPocetVrchlov(); i++) {
             k[i] = i;
+            System.out.println("\nk[" + i + "] = " + i);
         }
         ArrayList<Vrchol> vrcholy = new ArrayList<>();
         ArrayList<Hrana> hrany = new ArrayList<>();
