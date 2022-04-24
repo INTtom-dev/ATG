@@ -59,7 +59,6 @@ public class Kruskalov {
     }
     public void zoradenie() {
         Graf novyGraf = new Graf(new ArrayList<Vrchol>(), new ArrayList<Hrana>(), 0, 0);
-
         while (!this.graf.getZoznamHran().isEmpty()) {
             int index = 0;
             if (this.zoradenie) {
@@ -73,30 +72,29 @@ public class Kruskalov {
                 novyGraf.getZoznamHran().add(this.graf.getZoznamHran().get(index));
                 System.out.println("\npridana hrana: "+ this.graf.getZoznamHran().get(index));
                 this.graf.getZoznamHran().remove(index);
-                System.out.println("\nodstranena hrana: " + this.graf.getZoznamHran().get(index));
+                System.out.println("\nodstranena hrana: " + this.graf.getZoznamHran().remove(index));
             } else {
                 int najvacsiaCena = 0;
-                for (int i = this.graf.getZoznamHran().size() - 1; i >= 0; i--) {
+                for (int i = this.graf.getZoznamHran().size(); i >= 0; i--) {
                     if (this.graf.getZoznamHran().get(i).getCena() > najvacsiaCena) {
                         najvacsiaCena = this.graf.getZoznamHran().get(i).getCena();
                         index = i;
                     }
                 }
                 novyGraf.getZoznamHran().add(this.graf.getZoznamHran().get(index));
+                System.out.println("\nnajvacsia pridana hrana: "+ this.graf.getZoznamHran().get(index));
                 this.graf.getZoznamHran().remove(index);
+                System.out.println("\nnajvacsia odstranena hrana: " + this.graf.getZoznamHran().get(index));
             }
         }
         this.graf = novyGraf;
+        System.out.println("\n\n\n\n priradenie noveho grafu k existujucemu grafu" + this.graf);
         int[] k = new int[this.graf.getPocetVrchlov() + 1];
         for (int i = 0; i <= this.graf.getPocetVrchlov(); i++) {
             k[i] = i;
             System.out.println("\nk[" + i + "] = " + i);
         }
-        ArrayList<Vrchol> vrcholy = new ArrayList<>();
-        ArrayList<Hrana> hrany = new ArrayList<>();
-        int pocetVRcholov = 0;
-        int pocetHRan = 0;
-        Graf kostra = new Graf(vrcholy, hrany, pocetVRcholov, pocetHRan);
+        Graf kostra = new Graf(new ArrayList<Vrchol>(), new ArrayList<Hrana>(), 0, 0);
         for (int i = 0; i < this.graf.getPocetHran(); i++) {
             if (k[this.graf.getZoznamHran().get(i).getVrcholZ()] != k[this.graf.getZoznamHran().get(i).getVrcholDo()]) {
                 kostra.getZoznamHran().add(this.graf.getZoznamHran().get(i));

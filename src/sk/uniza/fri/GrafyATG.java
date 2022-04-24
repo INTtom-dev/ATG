@@ -19,12 +19,12 @@ public class GrafyATG {
         System.out.println("Hrán:" + g.getPocetHran());
 
         int vrcholZaciatok = 1;
-        int vrcholKoniec = 4;//145;
+        int vrcholKoniec = 3;//145;
         long zaciatok = System.currentTimeMillis();
 //        new Zakladny(g).najdiVzdialenost(vrcholZaciatok, vrcholKoniec);
 //        new Zakladny(g).najdiVzdialenost2(vrcholZaciatok, vrcholKoniec);
-//        new Label(g).najdiVzdialenost(vrcholZaciatok, vrcholKoniec);
-        new Kruskalov(g, true);
+        new Label(g).najdiVzdialenost(vrcholZaciatok, vrcholKoniec);
+        //new Kruskalov(g, true);
         System.out.println((System.currentTimeMillis() - zaciatok) / 1000.0);
     }
 }

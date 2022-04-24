@@ -49,11 +49,11 @@ public class Label {
                         vrcholDo.setT(riadiaciVrchol.getT() + hrana.getCena());
                         vrcholDo.setX(riadiaciVrchol.getNazov());
                         boolean obsahujeVrcholDo = false;
-                        for (Vrchol vrchol : pom) {
+                        for (Vrchol vrchol : this.graf.getZoznamVrcholov()) {
                             if (vrchol.getNazov() == vrcholDo.getNazov()) {
-                                pom.remove(hrana.getVrcholDo());
-                                pom.remove(hrana.getVrcholZ());
-                                pom.remove(hrana.getCena());
+                                this.graf.getZoznamVrcholov().remove(hrana.getVrcholDo());
+                                this.graf.getZoznamVrcholov().remove(hrana.getVrcholZ());
+                                this.graf.getZoznamVrcholov().remove(hrana.getCena());
                             }
                         }
                         for (Vrchol vrchol : epsilon) {
