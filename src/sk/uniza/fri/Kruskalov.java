@@ -48,38 +48,32 @@ public class Kruskalov {
 //            pocetHranNaSpojenie[i] = 0;
 //        }
     private Graf novy;
-    ArrayList<Vrchol> getZoznamVrcholov;
-    ArrayList<Hrana> getZoznamHran;
     int pocetVrcholov;
     int pocetHran;
     public Kruskalov(Graf graF, boolean zoradenie) {
         this.graf = graF;
         this.zoradenie = zoradenie;
-        this.getZoznamVrcholov = new ArrayList<>();
-        this.getZoznamHran = new ArrayList<>();
         this.pocetVrcholov = 0;
         this.pocetHran = 0;
         this.zoradenie();
     }
     public void zoradenie() {
-        ArrayList<Vrchol> getZoznamVrcholov = new ArrayList<>();
-        ArrayList<Hrana> getZoznamHran = new ArrayList<>();
-        int pocetVrcholov = 0;
-        int pocetHran = 0;
-        Graf novyGraf = new Graf(getZoznamVrcholov, getZoznamHran, pocetVrcholov, pocetHran);
+        Graf novyGraf = new Graf(new ArrayList<Vrchol>(), new ArrayList<Hrana>(), 0, 0);
 
         while (!this.graf.getZoznamHran().isEmpty()) {
             int index = 0;
             if (this.zoradenie) {
                 int najmensiaCena = NEKONECNO;
-                for (int i = 1; i < this.graf.getZoznamHran().size(); i++) { // int i = 0;
+                for (int i = 0; i < this.graf.getZoznamHran().size(); i++) {
                     if (this.graf.getZoznamHran().get(i).getCena() < najmensiaCena) {
                         najmensiaCena = this.graf.getZoznamHran().get(i).getCena();
                         index = i;
                     }
                 }
                 novyGraf.getZoznamHran().add(this.graf.getZoznamHran().get(index));
+                System.out.println("\npridana hrana: "+ this.graf.getZoznamHran().get(index));
                 this.graf.getZoznamHran().remove(index);
+                System.out.println("\nodstranena hrana: " + this.graf.getZoznamHran().get(index));
             } else {
                 int najvacsiaCena = 0;
                 for (int i = this.graf.getZoznamHran().size() - 1; i >= 0; i--) {
@@ -93,10 +87,8 @@ public class Kruskalov {
             }
         }
         this.graf = novyGraf;
-
-
         int[] k = new int[this.graf.getPocetVrchlov() + 1];
-        for (int i = 1; i <= this.graf.getPocetVrchlov(); i++) {
+        for (int i = 1; i <= this.graf.getZoznamVrcholov().size(); i++) {
             k[i] = i;
         }
         ArrayList<Vrchol> vrcholy = new ArrayList<>();
