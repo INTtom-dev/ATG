@@ -26,8 +26,7 @@ public class Label {
         Vrchol zaciatocnyVrchol = this.dajVrcholPodlaNazvu(vrcholZaciatok);
         zaciatocnyVrchol.setT(0);
         epsilon.add(zaciatocnyVrchol);
-        ArrayList<Vrchol> pom = new ArrayList<>(this.graf.getZoznamVrcholov());
-        while (!(epsilon.isEmpty()) && !(pom.isEmpty())) {
+        while (!(epsilon.isEmpty())) {
             Vrchol riadiaciVrchol = null;
 //            System.out.println("Epsilon: " + epsilon);
             int min = Integer.MAX_VALUE;
@@ -49,13 +48,6 @@ public class Label {
                         vrcholDo.setT(riadiaciVrchol.getT() + hrana.getCena());
                         vrcholDo.setX(riadiaciVrchol.getNazov());
                         boolean obsahujeVrcholDo = false;
-                        for (Vrchol vrchol : this.graf.getZoznamVrcholov()) {
-                            if (vrchol.getNazov() == vrcholDo.getNazov()) {
-                                this.graf.getZoznamVrcholov().remove(hrana.getVrcholDo());
-                                this.graf.getZoznamVrcholov().remove(hrana.getVrcholZ());
-                                this.graf.getZoznamVrcholov().remove(hrana.getCena());
-                            }
-                        }
                         for (Vrchol vrchol : epsilon) {
                             if (vrchol == vrcholDo) {
                                 obsahujeVrcholDo = true;
