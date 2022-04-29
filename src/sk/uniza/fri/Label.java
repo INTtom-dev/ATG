@@ -47,6 +47,13 @@ public class Label {
                     if (vrcholDo.getT() > riadiaciVrchol.getT() + hrana.getCena()) {
                         vrcholDo.setT(riadiaciVrchol.getT() + hrana.getCena());
                         vrcholDo.setX(riadiaciVrchol.getNazov());
+                        for (Vrchol vrchol1 : this.graf.getZoznamVrcholov()) {
+                            if (vrchol1 == vrcholDo) {
+                                this.graf.getZoznamVrcholov().remove(hrana.getVrcholDo());
+                                this.graf.getZoznamVrcholov().remove(hrana.getVrcholZ());
+                                this.graf.getZoznamVrcholov().remove(hrana.getCena());
+                            }
+                        }
                         boolean obsahujeVrcholDo = false;
                         for (Vrchol vrchol : epsilon) {
                             if (vrchol == vrcholDo) {
