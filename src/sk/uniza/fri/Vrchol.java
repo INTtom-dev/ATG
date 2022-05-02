@@ -16,11 +16,12 @@ public class Vrchol {
     private int t;
     private int x;
     private boolean jeOcislovany;
+    private int trvanie;
 
     public Vrchol(int cislo) {
         this.nazov = cislo;
-        vstupneHrany = new ArrayList<>();
-        vytupneHrany = new ArrayList<>();
+        this.vstupneHrany = new ArrayList<>();
+        this.vytupneHrany = new ArrayList<>();
     }
 
     public int getNazov() {
@@ -56,5 +57,19 @@ public class Vrchol {
     public void setX(int x) {
         this.x = x;
     }
+    public boolean jeOcislovany() {
+        return this.jeOcislovany;
+    }
 
+    public void setOcislovany(boolean jeOcislovany) {
+        this.jeOcislovany = jeOcislovany;
+    }
+
+    public int getTrvanie() {
+        return this.trvanie;
+    }
+
+    public void setTrvanie(int trvanie) {
+        this.trvanie = trvanie;
+    }
 }

@@ -294,10 +294,11 @@ public class Input {
      * @param pocetVrcholov
      * @return
      */
-    public int[] nacitajTrvaniaCinnosti(String name, int pocetVrcholov) {
+    public int[] nacitajTrvaniaCinnosti(String name, int pocetVrcholov) throws IOException, NullPointerException {
         int[] trvania = new int[pocetVrcholov + 1];
+        BufferedReader br = null;
         try {
-            BufferedReader br = new BufferedReader(new FileReader(new File(name)));
+            br = new BufferedReader(new FileReader(new File(name)));
             br.close();
             br = new BufferedReader(new FileReader(new File(name)));
             String line;
@@ -306,11 +307,12 @@ public class Input {
                 int trv = Integer.parseInt(line);
                 trvania[i] = trv;
             }
-            br.close();
         } catch (FileNotFoundException ex) {
             System.err.println("Subor neexistuje");
         } catch (IOException ex) {
             System.err.println("IOException: " + ex.getMessage());
+        } finally{
+            br.close();
         }
         return trvania;
     }

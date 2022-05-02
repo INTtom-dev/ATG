@@ -3,7 +3,11 @@ package sk.uniza.fri;/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  *
@@ -55,18 +59,38 @@ public class Graf {
     public int getPocetHran() {
         return this.pocetHran;
     }
-//    public void addHranyToVrcholGraph() {
-//        for (Hrana hrana: this.zoznamHran) {
-//            this.zoznamVrcholov.get(hrana.getVrcholZ().pridajVystupnuHranu(hrana));
-//            this.zoznamVrcholov.get(hrana.getVrcholDo().pridajVystupnuHranu(hrana));
-//            this.zoznamVrcholov.get(hrana.getVrcholZ().pridajVstupnuHranu(hrana));
-//            this.zoznamVrcholov.get(hrana.getVrcholDo().pridajVstupnuHranu(hrana));
-//        }
-//    }
-//     public void addHranyToVrcholDiGraph() {
-//        for (Hrana hrana: this.zoznamHran) {
-//            this.zoznamVrcholov.get(hrana.getVrcholZ().pridajVystupnuHranu(hrana));
-//            this.zoznamVrcholov.get(hrana.getVrcholDo().pridajVstupnuHranu(hrana));
-//        }
-//    }
+    public void addHranyToVrcholGraph() {
+        for (Hrana hrana: this.zoznamHran) {
+            this.zoznamVrcholov.get(hrana.getVrcholZ()).pridajVystupnuHranu(hrana);
+            this.zoznamVrcholov.get(hrana.getVrcholDo()).pridajVystupnuHranu(hrana);
+            this.zoznamVrcholov.get(hrana.getVrcholZ()).pridajVstupnuHranu(hrana);
+            this.zoznamVrcholov.get(hrana.getVrcholDo()).pridajVstupnuHranu(hrana);
+        }
+    }
+    public void addHranyToVrcholDiGraph() {
+        for (Hrana hrana: this.zoznamHran) {
+            this.zoznamVrcholov.get(hrana.getVrcholZ()).pridajVystupnuHranu(hrana);
+            this.zoznamVrcholov.get(hrana.getVrcholDo()).pridajVstupnuHranu(hrana);
+        }
+    }
+
+    public int[] nacitajTrvaniaCinnosti(String fileName) throws IOException {
+        int[] trvania = new int[this.pocetVrchlov];
+        BufferedReader br = null;
+        try {
+            br = new BufferedReader(new java.io.FileReader(fileName));
+            String line;
+            for (int i = 1; i < this.pocetVrchlov; i++) {
+                line = br.readLine();
+                int trvanie = Integer.parseInt(line);
+                trvania[i] = trvanie;
+                this.zoznamVrcholov.get(i).setTrvanie(trvanie);
+            }
+        } catch (IOException e){
+            System.out.println("Nepodarilo sa otvorit subor");
+        } finally {
+            Objects.requireNonNull(br).close();
+        }
+        return trvania;
+    }
 }

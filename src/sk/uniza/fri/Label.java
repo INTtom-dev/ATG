@@ -49,7 +49,7 @@ public class Label {
                         vrcholDo.setX(riadiaciVrchol.getNazov());
                         for (Vrchol vrchol1 : this.graf.getZoznamVrcholov()) {
                             if (vrchol1 == vrcholDo) {
-                                this.graf.getZoznamVrcholov().remove(hrana.getVrcholDo());
+                                this.graf.getZoznamVrcholov().remove(hrana.get);
                                 this.graf.getZoznamVrcholov().remove(hrana.getVrcholZ());
                                 this.graf.getZoznamVrcholov().remove(hrana.getCena());
                             }
