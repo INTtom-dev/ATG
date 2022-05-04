@@ -3,6 +3,9 @@ package sk.uniza.fri;/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -22,7 +25,8 @@ public class Graf {
     private int pocetVrchlov;
     private int pocetHran;
 
-    public static Graf nacitajGraf(String filename) {
+    @Contract("_ -> new")
+    public static @NotNull Graf nacitajGraf(String filename) {
         Input input = new Input();
         input.readData(filename);
         return new Graf(input.getZoznamVrcholov(), input.getZoznamHran(), input.getPocetVrcholov(), input.getPocetHran());

@@ -23,8 +23,15 @@ public class GrafyATG {
         long zaciatok = System.currentTimeMillis();
 //        new Zakladny(g).najdiVzdialenost(vrcholZaciatok, vrcholKoniec);
 //        new Zakladny(g).najdiVzdialenost2(vrcholZaciatok, vrcholKoniec);
-        new Label(g).najdiVzdialenost(vrcholZaciatok, vrcholKoniec);
+//        new Label(g).najdiVzdialenost(vrcholZaciatok, vrcholKoniec);
         //new Kruskalov(g, true);
+
+
+
+
+
+
         System.out.println((System.currentTimeMillis() - zaciatok) / 1000.0);
     }
+
 }
