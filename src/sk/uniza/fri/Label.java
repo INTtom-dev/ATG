@@ -18,19 +18,24 @@ public class Label {
 
     public int najdiVzdialenost(int vrcholZaciatok, int vrcholKoniec) {
         Logger log = Logger.getLogger(Label.class.getName());
-
+        //nastavenie hodnot značiek T a X všetkých vrcholov
         for (int j = 0; j < this.graf.getPocetVrchlov(); j++) {
             this.graf.getZoznamVrcholov().get(j).setT(Integer.MAX_VALUE);
             this.graf.getZoznamVrcholov().get(j).setX(-1);
         }
+        //vytvorenie epsilonu
         ArrayList<Vrchol> epsilon = new ArrayList<>();
+        //vyhladanie vrcholu zaciatku
         Vrchol zaciatocnyVrchol = this.dajVrcholPodlaNazvu(vrcholZaciatok);
+        //nastavenie hodnoty T v zaciatocnom vrchole
         zaciatocnyVrchol.setT(0);
+        //pridanie zaciatocneho vrcholu do epsilonu
         epsilon.add(zaciatocnyVrchol);
+        //ckylus prechadzania vrcholob
         while (!(epsilon.isEmpty())) {
             Vrchol riadiaciVrchol = null;
 //            log.info("Epsilon: " + epsilon);
-            int min = Integer.MAX_VALUE;
+            int min = Integer.MAX_VALUE / 2;
             for (Vrchol vrchol : epsilon) {
                 if (vrchol.getT() < min) {
                     min = vrchol.getT();

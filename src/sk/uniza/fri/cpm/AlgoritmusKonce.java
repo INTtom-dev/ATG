@@ -32,7 +32,7 @@ public class AlgoritmusKonce {
         }
         int riadiaciVrchol = 0;
 
-        for (int i = this.pocetVrcholov; i > 0; i--) {
+        for (int i = this.pocetVrcholov; i >= 0; i--) {
             riadiaciVrchol = this.postupnost[i];
             log.info("Vyberám riadiaci vrchol k(" + riadiaciVrchol + ") = " + k[riadiaciVrchol]);
             for (int j = 0; j < this.graf.getZoznamHran().size(); j++) {
@@ -51,7 +51,7 @@ public class AlgoritmusKonce {
         }
         log.info("Časové rezervy pre každý vrchol:");
         for (int i = 1; i <= pocetVrcholov; i++) {
-            log.info("R(" + i + ") = " + (k[i] - this.ohodnotenia[i]));
+            log.info("R(" + i + ") = " + (k[i] - z[i ]- this.ohodnotenia[i]));
         }
     }
 }

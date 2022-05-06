@@ -24,7 +24,7 @@ public class GrafyATG {
 //        new Zakladny(g).najdiVzdialenost(vrcholZaciatok, vrcholKoniec);
 //        new Zakladny(g).najdiVzdialenost2(vrcholZaciatok, vrcholKoniec);
 //        new Label(g).najdiVzdialenost(vrcholZaciatok, vrcholKoniec);
-        //new Kruskalov(g, true);
+        new KruskalNovy(g, true);
 
 
 

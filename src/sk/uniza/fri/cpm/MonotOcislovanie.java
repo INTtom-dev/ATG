@@ -20,30 +20,30 @@ public class MonotOcislovanie {
     }
     public ArrayList<Vrchol> dajMonotonneOcislovanie() {
         ArrayList<Vrchol> monotonickeOcislovanie = new ArrayList<>();
-       int[] ideg = new int[this.graf.getZoznamVrcholov().size()];
-       for (int i = 0; i < this.graf.getZoznamVrcholov().size(); i++) {
-           ideg[i] = this.graf.getZoznamVrcholov().get(i).getVstupneHrany().size();
-       }
+        int[] ideg = new int[this.graf.getZoznamVrcholov().size()];
+        for (int i = 0; i < this.graf.getZoznamVrcholov().size(); i++) {
+            ideg[i] = this.graf.getZoznamVrcholov().get(i).getVstupneHrany().size();
+        }
         boolean pokracuj = true;
         while (pokracuj) {
-           Vrchol riadiaciVrchol = null;
-           for (int i = 0; i < this.graf.getZoznamVrcholov().size(); i++) {
-               Vrchol v = this.graf.getZoznamVrcholov().get(i);
-               if (ideg[i] == 0 && !v.jeOcislovany()) {
-                   riadiaciVrchol = v;
-                   break;
-               }
-           }
-           if (riadiaciVrchol == null) {
-               pokracuj = false;
-           } else {
-               monotonickeOcislovanie.add(riadiaciVrchol);
-               riadiaciVrchol.setOcislovany(true);
-               for (Hrana hrana : riadiaciVrchol.getVytupneHrany()) {
-                   ideg[hrana.getVrcholDo()]--;
-               }
-           }
-       }
+            Vrchol riadiaciVrchol = null;
+            for (int i = 0; i < this.graf.getZoznamVrcholov().size(); i++) {
+                Vrchol v = this.graf.getZoznamVrcholov().get(i);
+                if (ideg[i] == 0 && !v.jeOcislovany()) {
+                    riadiaciVrchol = v;
+                    break;
+                }
+            }
+            if (riadiaciVrchol == null) {
+                pokracuj = false;
+            } else {
+                monotonickeOcislovanie.add(riadiaciVrchol);
+                riadiaciVrchol.setOcislovany(true);
+                for (Hrana hrana : riadiaciVrchol.getVytupneHrany()) {
+                    ideg[hrana.getVrcholDo()]--;
+                }
+            }
+        }
         if (monotonickeOcislovanie.size() == this.graf.getPocetVrchlov() - 1) {
             System.out.println("Digraf je acyklický");
         } else {

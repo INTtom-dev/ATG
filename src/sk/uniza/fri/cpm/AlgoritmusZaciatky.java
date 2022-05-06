@@ -31,7 +31,7 @@ public class AlgoritmusZaciatky {
             this.z[i] = 0;
         }
         int riadiaciVrchol = 0;
-        for (int i = 1; i <= this.pocetVrcholov; i++) {
+        for (int i = 0; i <= this.pocetVrcholov; i++) {
             riadiaciVrchol = this.postupnosti[i];
             log.info("Vyberám riadiaci vrchol z(" + riadiaciVrchol + ") = " +this.z[riadiaciVrchol]);
             for (int j = 0; j <= this.graf.getZoznamHran().size(); j++) {
