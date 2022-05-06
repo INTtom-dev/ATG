@@ -51,7 +51,12 @@ public class AlgoritmusKonce {
         }
         log.info("Časové rezervy pre každý vrchol:");
         for (int i = 1; i <= pocetVrcholov; i++) {
-            log.info("R(" + i + ") = " + (k[i] - z[i ]- this.ohodnotenia[i]));
+            log.info("R(" + i + ") = " + (k[i] - z[i] - this.postupnost[i]));
+        }
+        for (int i = 0; i <= pocetVrcholov; i++) {
+            if (k[i] - z[i] - this.postupnost[i] == 0) {
+                log.info("Kriticka cinnost: " + i);
+            }
         }
     }
 }
