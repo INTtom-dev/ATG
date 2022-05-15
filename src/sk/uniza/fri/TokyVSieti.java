@@ -31,7 +31,7 @@ public class TokyVSieti {
     }
 
     public int min(int x, int y) {
-        return x < y ? x : y;
+        return x < y ? x : y; //Math.min(x, y);
     }
 
     public void vloz(int x) {
