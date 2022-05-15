@@ -7,7 +7,6 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -31,7 +30,11 @@ public class Graf {
         input.readData(filename);
         return new Graf(input.getZoznamVrcholov(), input.getZoznamHran(), input.getPocetVrcholov(), input.getPocetHran());
     }
-
+    public static Graf nacitajGrafToky(String filename) {
+        Input input = new Input();
+        input.readDataToky(filename);
+        return new Graf(input.getZoznamVrcholov(), input.getZoznamHran(), input.getPocetVrcholov(), input.getPocetHran());
+    }
     public Graf(ArrayList<Vrchol> zoznamVrcholov, ArrayList<Hrana> zoznamHran, int pocetVrchlov, int pocetHran) {
         this.zoznamVrcholov = zoznamVrcholov;
         this.zoznamHran = zoznamHran;

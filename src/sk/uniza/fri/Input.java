@@ -335,5 +335,60 @@ public class Input {
             zoznamVrcholov.add(new Vrchol(i));
         }
     }
+    public void readDataToky(String filename) {
+        this.readFileToky(filename);
+        this.pocetVrchlov++;
+        this.createZoznamVrcholov();
+        this.sortHByFirstAndSecondColumn();
+        this.sortZoznamHranByFirstAndSecondColumn();
+        this.createSmernikVrcholov();
+    }
 
+    private void readFileToky(String filename) {
+        this.pocetVrchlov = 0;
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(new File(filename)));
+            int lines = 0;
+            while (br.readLine() != null) {
+                lines++;
+            }
+            br.close();
+            this.hrany = new int[lines + 1][4];
+            this.zoznamHran = new ArrayList<>(lines + 1);
+            int index = 1;
+            br = new BufferedReader(new FileReader(new File(filename)));
+            String line;
+            while ((line = br.readLine()) != null) {
+                if (!line.isEmpty()){
+                    String replace = line.trim().replaceAll("\\s+", " ");
+                    String[] split = replace.split(" ");
+                    int vrchZ = Integer.parseInt(split[0]);
+                    int vrchDo = Integer.parseInt(split[1]);
+                    int cena = Integer.parseInt(split[2]);
+                    int kapacita = Integer.parseInt(split[3]);
+                    this.zoznamHran.add(new Hrana(vrchZ, vrchDo, cena, kapacita));
+
+
+                    this.hrany[index][0] = vrchZ;
+                    this.hrany[index][1] = vrchDo;
+                    this.hrany[index][2] = cena;
+                    this.hrany[index][3] = kapacita;
+                    index++;
+                    if (this.pocetVrchlov < vrchZ) {
+                        this.pocetVrchlov = vrchZ;
+                    }
+                    if (this.pocetVrchlov < vrchDo) {
+                        this.pocetVrchlov = vrchDo;
+                    }
+                }
+            }
+            this.zoznamHran.add(0, new Hrana(0, 0, 0, 0));
+            this.pocetHran = this.hrany.length;
+            br.close();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
